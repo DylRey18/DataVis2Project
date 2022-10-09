@@ -1,0 +1,94 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 860,
+    "height": 450,
+    "title": "OECD countries meat consumption in Past, Present, and Future",
+    "data": {
+        "url": "https://raw.githubusercontent.com/DylRey18/DataVis2Project/main/Datasets/OECDCountriesMeatConsumption.csv"
+    },
+    "transform": [
+        {"filter": "datum.LOCATION == 'WLD' "},
+        {"filter": "datum.MEASURE == 'THND_TONNE' "}
+    ],
+    "encoding": {
+        "x":{"timeUnit": "year","field": "TIME","title":"Year","axis": {"grid": false}},
+        "y":{"field":"Value","type": "quantitative","title":"Value in Thousand Tonnes"}
+    },
+    "layer": [
+        {   
+            "params": [
+                {
+                    "name": "continent_highlight",
+                    "select": {"type": "point", "fields": ["SUBJECT"]},
+                    "bind": "legend"
+                }
+            ],
+            "mark" : {
+                "type": "line",
+                "point": true
+            },
+            "encoding": {
+                "color": {
+                        "field": "SUBJECT",
+                        "type": "nominal",
+                        "title": "Meat type",
+                        "scale": {"domain": ["BEEF","POULTRY","PIG","SHEEP"],"range": ["#0324fc","#fcd303","#fc038c","#964B00"]}
+                    },
+                "opacity": {
+                    "condition": {"param": "continent_highlight", "value": 0.7},
+                    "value": 0.1
+                    },
+                "tooltip": [
+                    {"field": "TIME", "type": "temporal","format":"%Y","title":"Year"},
+                    {"field": "Value", "type": "quantitative", "format": ",.2f"}
+                ]
+            }
+        },
+        {   
+            "transform": [
+                {"filter": "datum.SUBJECT == 'POULTRY' "},
+                {"filter": {"timeUnit": "year", "field": "TIME", "equal": 2016}},
+                {"calculate": " 'Poultry consumption; surpassed; Pig in 2016' ","as": "text_annotation_raw"},
+                {
+                    "calculate": "split(datum.text_annotation_raw, ';')",
+                    "as": "text_annotation_2016"
+                }
+            ],
+            "mark": {
+                "type": "text",
+                "align": "right",
+                "dx": 10,
+                "dy": -35,
+                "baseline": "middle",
+                "fontStyle": "italic"
+            },
+            "encoding": {"text":{"field": "text_annotation_2016"}}
+        },
+        {
+            "transform": [
+                {"filter": "datum.SUBJECT == 'BEEF' "},
+                {"filter": {"timeUnit": "year", "field": "TIME", "equal": 1996}},
+                {"calculate": " 'Poultry consumption; surpassed; Beef in 1996' ","as": "text_annotation_raw_2"},
+                {
+                    "calculate": "split(datum.text_annotation_raw_2, ';')",
+                    "as": "text_annotation_1996"
+                }
+            ],
+            "mark": {
+                "type": "text",
+                "align": "right",
+                "dx": 60,
+                "dy": 25,
+                "baseline": "middle",
+                "fontStyle": "italic"
+            },
+            "encoding": {"text":{"field": "text_annotation_1996"}}
+        }
+
+    ]
+    
+
+
+
+
+}
