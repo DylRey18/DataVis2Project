@@ -8,14 +8,50 @@
     <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
-    
+
+    <link rel="stylesheet" href="css/layout.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/grids-responsive-min.css" />
     <!-- <script src="HW9Vis.js"></script> --> 
 
 </head>
 <body>
-    <div id="week9HW_map"></div>
+    
+    
+
+    <div class="pure-g">
+        <div class="pure-u-1-5">
+            <div id="Map_text">
+                <p>This map depicts the meat consumption of poultry in 2022
+                    <br><br> We can see that China and US consumes the most in 2022
+                    <br><br> Whereas Ethiopia is the lowest consuming country with only 14 thousand tonnes
+                </p>
+
+            </div>
+        </div>
+        <div class="pure-u-4-5">
+            <div id="week9HW_map"></div>
+        </div>
+        <div class="pure-u-1-5">
+            <div id="line_text">
+                <p>The growth spurt in Poultry's consumption is interesting from this visualisation.
+                    <br><br>Poultry surpassed beef in 1996 
+                    <br><br>it keeps growing in consumption and overtook pig in 2016.
+                    <br><br>Sheep is still the lowest in consumption throughout the years.
+                </p>
+            </div>
+        </div>
+        <div class="pure-u-3-5">
+            <div id="week10HW_Line"></div>
+        </div>
+        
+    </div>
 
     <script type="text/javascript">
+        
+        var spec1 = "JSFiles/HW10InteractiveLineChart.json";
+        vegaEmbed('#week10HW_Line', spec1).then(function(result) {}).catch(console.error);
 
         var spec2 = "JSFiles/HW9MapSymbols.json";
         vegaEmbed('#week9HW_map', spec2).then(function(result) {}).catch(console.error);
