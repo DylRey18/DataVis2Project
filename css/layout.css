@@ -1,0 +1,51 @@
+html,
+body {
+    background-color: #F3FAF9;
+}
+
+.pure-u-1-5 {
+    margin-top: 30px;
+    height: 30vw;
+}
+
+#Map_text {
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+#line_text {
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+#week9HW_map {
+    width: 90%;
+    height: 90%;
+    margin-right: 10px;
+    margin-left: 50px;
+    margin-top: 40px;
+}
+#week10HW_Line {
+    width: 90%;
+    height: 90%;
+    margin-right: 10px;
+    margin-left: 50px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+h1 {
+    text-align: center;
+    color: #527298;
+    font-size: 40px;
+}
+
+p {
+    color: #527298;
+    font-size: 16px;
+}
+
+#bar_chart {
+    width: 90%;
+    height: 90%
+}
